@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
-const character = require("./api/characterData"); 
-const image = require("./api/characterImage"); 
-
-app.use("/character",character);
+const character = require("./route/character/characterData"); 
+const image = require("./route/character/characterImage"); 
+app.use(cors());
+app.options('*', cors());
+app.use("/api",character);
 app.use("/image",image);
 
 app.use((req,res,next)=> {
